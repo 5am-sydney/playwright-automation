@@ -19,6 +19,13 @@ test.describe('Login Tests', () => {
     await expect(page.locator('div.app_logo')).toHaveText("Swag Labs");
   });
 
+  test('should not login with a locked out user', async ({ page }) => {
+    await loginPage.login('locked_out_user', 'secret_sauce');
+
+    await expect(page).toHaveURL('https://www.saucedemo.com/');
+    await expect(page.locator('[data-test="error"]')).toContainText('this user has been locked out');
+  });
+
   // test('should show error with invalid credentials', async ({ page }) => {
   //   await loginPage.enterUsername('invalid_user');
   //   await loginPage.enterPassword('invalid_password');
