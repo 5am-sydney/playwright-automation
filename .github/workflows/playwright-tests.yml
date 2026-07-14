@@ -28,7 +28,7 @@ jobs:
       run: npx playwright install --with-deps
 
     - name: Run Playwright tests:headless
-      run: npx playwright tests:headless
+      run: npm run tests:headless
 
     - name: Upload Playwright report
       if: failure()
