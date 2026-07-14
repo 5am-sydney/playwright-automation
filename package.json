@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "tests:headed": "env-cmd -f .env.uat npx playwright test login.spec.ts --headed",
-    "tests:headless": "env-cmd -f .env.uat npx playwright test login.spec.ts --headless",
+    "tests:headless": "env-cmd -f .env.uat npx playwright test login.spec.ts",
     "tests:headed:all": "env-cmd -f .env.prod npx playwright test --headed",
     "tests:headed:all:debug": "env-cmd -f .env.prod npx playwright test --debug",
     "tests:debug": "env-cmd -f .env.prod npx playwright test member-access.spec.js --debug",

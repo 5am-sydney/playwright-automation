@@ -10,7 +10,7 @@ export default defineConfig({
   reporter: 'html',
   use: {
     browserName: 'chromium',
-    headless: false,
+    headless: !!process.env.CI,
     screenshot: 'on',
     trace: 'retain-on-failure',
   },
