@@ -50,6 +50,17 @@ export class InventoryPage {
     return name;
   }
 
+  async getProductNames(): Promise<string[]> {
+    return this.page.locator(this.itemName).allInnerTexts();
+  }
+
+  async addFirstProductToCart(): Promise<string> {
+    const firstItem = this.page.locator('.inventory_item').first();
+    const name = await firstItem.locator(this.itemName).innerText();
+    await firstItem.locator('[data-test^="add-to-cart"]').click();
+    return name;
+  }
+
   async logout() {
     await this.page.click(this.burgerMenuButton);
     await this.page.click(this.logoutLink);

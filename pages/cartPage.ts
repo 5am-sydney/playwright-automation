@@ -5,6 +5,7 @@ export class CartPage {
   private cartItem = '.cart_item';
   private itemName = '.inventory_item_name';
   private checkoutButton = '[data-test="checkout"]';
+  private continueShoppingButton = '[data-test="continue-shopping"]';
 
   constructor(page: Page) {
     this.page = page;
@@ -16,6 +17,14 @@ export class CartPage {
 
   async getItemNames(): Promise<string[]> {
     return this.page.locator(this.itemName).allInnerTexts();
+  }
+
+  async removeItem(productId: string) {
+    await this.page.click(`[data-test="remove-${productId}"]`);
+  }
+
+  async continueShopping() {
+    await this.page.click(this.continueShoppingButton);
   }
 
   async checkout() {
