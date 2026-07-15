@@ -7,7 +7,10 @@ export default defineConfig({
   expect: {
     timeout: 5000,
   },
-  reporter: 'html',
+  reporter: [
+    ['html'],
+    ['allure-playwright', { outputFolder: 'allure-results', disableWebdriverStepsReporting: true, disableMochaHooks: true }],
+  ],
   use: {
     browserName: 'chromium',
     headless: !!process.env.CI,
