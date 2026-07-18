@@ -3,5 +3,6 @@ playwright-report/
 test-results/
 allure-results/
 allure-report/
+allure-report-share/
 .playwright-mcp/
 .DS_Store
