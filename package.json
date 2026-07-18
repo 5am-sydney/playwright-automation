@@ -10,8 +10,9 @@
     "tests:headed:all": "env-cmd -f .env.prod npx playwright test --headed",
     "tests:headed:all:debug": "env-cmd -f .env.prod npx playwright test --debug",
     "tests:debug": "env-cmd -f .env.prod npx playwright test member-access.spec.js --debug",
-    "tests:allure": "env-cmd -f .env.uat npx playwright test --reporter=allure-playwright",
-    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "tests:allure": "env-cmd -f .env.uat npx playwright test",
+    "allure:generate": "node scripts/allure-history.js && allure generate allure-results --clean -o allure-report",
+    "allure:generate:share": "node scripts/allure-history.js && allure generate allure-results --single-file --clean -o allure-report-share",
     "allure:open": "allure open allure-report",
     "report": "npx playwright show-report"
   },
