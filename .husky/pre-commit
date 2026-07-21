@@ -1,0 +1,34 @@
+# Enforce branch naming convention before allowing a commit.
+# Allowed: feature/*, fix/*, refactor/*  (must have a name after the slash)
+# Exempt:  main, master, and detached-HEAD states (rebase, merge, bisect)
+
+branch="$(git symbolic-ref --short HEAD 2>/dev/null)"
+
+# Detached HEAD (e.g. interactive rebase) — nothing to validate, allow it.
+if [ -z "$branch" ]; then
+  exit 0
+fi
+
+# Long-lived branches are exempt.
+case "$branch" in
+  main|master)
+    exit 0
+    ;;
+esac
+
+# Must start with an allowed prefix and have a non-empty name after the slash.
+if echo "$branch" | grep -Eq '^(feature|fix|refactor)/.+'; then
+  exit 0
+fi
+
+echo ""
+echo "  ✖ Commit blocked: branch name does not follow the naming convention."
+echo ""
+echo "    Branch:   $branch"
+echo "    Required: feature/<name>, fix/<name>, or refactor/<name>"
+echo "    Exempt:   main, master"
+echo ""
+echo "    Rename your branch, e.g.:"
+echo "      git branch -m feature/$branch"
+echo ""
+exit 1
