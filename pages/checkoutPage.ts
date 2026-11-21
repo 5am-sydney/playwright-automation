@@ -38,10 +38,12 @@ export class CheckoutPage {
   }
 
   async getItemNames(): Promise<string[]> {
+    await this.page.locator(this.itemName).first().waitFor();
     return this.page.locator(this.itemName).allInnerTexts();
   }
 
   async getItemPrices(): Promise<number[]> {
+    await this.page.locator(this.itemPrice).first().waitFor();
     const prices = await this.page.locator(this.itemPrice).allInnerTexts();
     return prices.map((price) => parseFloat(price.replace('$', '')));
   }

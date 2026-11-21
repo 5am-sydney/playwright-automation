@@ -32,6 +32,7 @@ export class InventoryPage {
 
   async goToCart() {
     await this.page.click(this.cartLink);
+    await this.page.waitForURL(/cart\.html/);
   }
 
   async sortBy(optionValue: string) {

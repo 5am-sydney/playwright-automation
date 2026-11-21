@@ -12,10 +12,12 @@ export class CartPage {
   }
 
   async getItemCount(): Promise<number> {
+    await this.page.locator('.cart_list').waitFor();
     return this.page.locator(this.cartItem).count();
   }
 
   async getItemNames(): Promise<string[]> {
+    await this.page.locator('.cart_list').waitFor();
     return this.page.locator(this.itemName).allInnerTexts();
   }
 
