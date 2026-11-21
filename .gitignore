@@ -6,3 +6,5 @@ allure-report/
 allure-report-share/
 .playwright-mcp/
 .DS_Store
+
+.env
